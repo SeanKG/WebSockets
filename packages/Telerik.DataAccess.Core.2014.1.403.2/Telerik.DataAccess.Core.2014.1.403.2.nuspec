@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Telerik.DataAccess.Core</id>
+    <version>2014.1.403.2</version>
+    <title>Telerik.DataAccess.Core</title>
+    <authors>Telerik AD</authors>
+    <owners>Telerik AD</owners>
+    <licenseUrl>http://www.telerik.com/purchase/license-agreement/data-access</licenseUrl>
+    <projectUrl>http://www.telerik.com/data-access</projectUrl>
+    <iconUrl>http://www.telerik.com/sfimages/default-source/productsimages/openaccess-orm/Resources/nuget-telerik-data-access.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The Telerik.DataAccess.Core NuGet package provides the Telerik Data Access runtime assemblies necessary to consume Telerik Data Access persistent objects, without defining any mapping.
+
+If this project contains persistent classes and defines mapping, the Telerik.DataAccess.Fluent NuGet package is required as well.
+
+Telerik Data Access helps defining mapping and executing create, retrieve, update and delete operations for your data access classes and database tables. It allows you to consume stored procedures and functions.</description>
+    <summary>The Telerik.DataAccess.Core NuGet package provides the Telerik Data Access runtime assemblies necessary to work with Telerik Data Access persistent objects.</summary>
+    <releaseNotes>New
+- NuGets: Telerik.DataAccess.Core NuGet package now includes Telerik.OpenAccess.40.Extensions.dll - Telerik.OpenAccess.40.Extensions.dll that will be added automatically as reference if target project is using .Net 4.0 or later.
+- Database default values in Fluent API - Database First users of the Code-Only mapping can now specify whether a column has a default value calculated by the database server. This could be done using the .HasDefaultValue() extension method.
+- Bulk Select integrated in LINQ statements - The recently released functionality for Bulk Select based on a set of object keys is now fully integrated into the Data Access LINQ engine, which means that joining data from different systems is now easier and less error prone.
+- Support for MS SQL Server 2014 - Data Access is now fully tested and can be used in production with MS SQL Server 2014 RTM.
+- Dynamic detection of Azure database so that missing Backend value is deduced correctly - When an Azure database is specified via connection string settings (app.config/web.config), and no explicit backend is specified in the BackendConfiguration, the missing value is no longer given as MSSQL, but Azure is used. This eases the transition between the two backends.
+- MariaDB support upgraded to 10.0.10 - Data Access is now tested with the latest version (at the release date) of MariaDB - 10.0.10
+
+Fixed
+- Runtime: Too frequent Garbage Collection under heavy load with a small connection pool - When the connection pool is empty (no more connections are available), activities on the server used to get blocked until a connection gets available again. This situation can arise when too many requests are attempted in parallel for the given connection pool size. In such case, the connection pool thread schedules a System.GC.Collect(1) based on a predefined period in seconds in order to free non-disposed connections that can be collected. This period is now changed to 31 seconds to improve the overall performance.
+- Runtime: IndexOutOfRangeException in OpenAccessRuntime.common.GenericState due to metadata mismatch - In some complex scenarios, it happened that an IndexOutOfRangeException was thrown because the state and the metadata were out of sync. Now this exception is avoided.
+- Runtime: In presence of server side exceptions, cleanup of statements, readers and connections could fail - When a lock conflict occurs, the reader, statement and connection were sometimes incorrectly kept active and not cleaned up.
+- LINQ: OR expressions in filters producing invalid SQL in Oracle when vertical inheritance is used - Invalid SQL was generated for LINQ queries with filters chained using OR, vertical inheritance and target database server Oracle.
+- Runtime: Highlow key generator using too many connections - The high-low key generator was always taking a connection out of the pool even if that was not necessary.</releaseNotes>
+    <copyright>Copyright (C) 1996-2014 Telerik AD</copyright>
+    <language>en-US</language>
+    <tags>ORM Fluent CodeOnly Entity Mapping DataAccess Database DAL</tags>
+  </metadata>
+</package>
